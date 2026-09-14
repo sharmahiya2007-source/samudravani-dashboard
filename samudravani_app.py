@@ -205,14 +205,14 @@ with col_map:
     df_nodes["risk_status"] = df_nodes.apply(
         lambda r: "Caution" if agent_hazard_risk(r)["risky"] else "Normal", axis=1
     )
-    fig_map = px.scatter_mapbox(
+    fig_map = px.scatter_map(
         df_nodes, lat="lat", lon="lon", color="risk_status",
         color_discrete_map={"Normal": "#2E8B57", "Caution": "#D85A30"},
         size="pfz_score", size_max=22, hover_name="name",
         hover_data={"lat": False, "lon": False, "hazard": True, "sst_c": True},
         zoom=3.6, center={"lat": 15.5, "lon": 78}, height=420,
     )
-    fig_map.update_layout(mapbox_style="carto-positron", margin=dict(l=0, r=0, t=0, b=0))
+    fig_map.update_layout(map_style="carto-positron", margin=dict(l=0, r=0, t=0, b=0))
     st.plotly_chart(fig_map, use_container_width=True)
 
 with col_trend:
